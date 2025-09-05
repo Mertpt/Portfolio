@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mert's Portfolio</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --neon-green: #39ff14;
+            --neon-pink: #ff00ff;
+            --neon-yellow: #ffff00;
+            --turquoise: #00f5ff;
+            --neon-purple: #9d00ff;
+            --neon-orange: #ff5f1f;
+            --neon-red: #fd1c03;
+        }
+
+        body {
+            background-color: #000000;
+            color: var(--neon-green);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #000000;
+            color: var(--neon-orange);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #151414;
+            width: 100%;
+        }
+
+        header h1 {
+            text-shadow: 0 0 3px var(--neon-orange), 0 0 2px var(--neon-orange);
+        }
+
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--neon-yellow);
+            text-shadow: 0 0 2px var(--neon-yellow), 0 0 3px var(--neon-yellow);
+            transition: all 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: var(--turquoise);
+            text-shadow: 0 0 2px var(--turquoise), 0 0 3px var(--turquoise);
+        }
+
+        section {
+            padding: 40px 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .neon-box {
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+            box-shadow: 0 0 15px var(--neon-green), 0 0 5px var(--neon-green);
+        }
+
+        #Introduction .neon-box {
+            border: 2px solid var(--neon-green);
+            background-color: #111111;
+        }
+        
+        #Aboutme .neon-box {
+            border: 2px solid var(--neon-purple);
+            background-color: #111111;
+            box-shadow: 0 0 15px var(--neon-purple), 0 0 5px var(--neon-purple);
+        }
+        
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 2em;
+        }
+
+        #Introduction h2 {
+            color: var(--neon-green);
+            text-shadow: 0 0 2px var(--neon-green), 0 0 3px var(--neon-green);
+        }
+        #Aboutme h2 {
+            color: var(--neon-purple);
+            text-shadow: 0 0 2px var(--neon-purple), 0 0 3px var(--neon-purple);
+        }
+        #Aboutme p {
+            color: var(--neon-purple);
+            text-shadow: 0 0 2px var(--neon-purple), 0 0 3px var(--neon-purple);
+        }
+        #Projects h2 {
+            color: var(--neon-pink);
+            text-shadow: 0 0 2px var(--neon-pink), 0 0 3px var(--neon-pink);
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.5;
+            text-shadow: 0 0 1px var(--neon-green), 0 0 2px var(--neon-green);
+        }
+
+        #dev-warning {
+            position: fixed;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000;
+            color: var(--neon-red);
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid var(--neon-red);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red), 0 0 30px var(--neon-red);
+            animation: neon-flicker 1.5s infinite alternate;
+            z-index: 1000;
+        }
+
+        @keyframes neon-flicker {
+            0% {
+                text-shadow: 0 0 5px var(--neon-red), 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+                opacity: 1;
+            }
+            50% {
+                text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red), 0 0 40px var(--neon-red);
+                opacity: 0.8;
+            }
+            100% {
+                text-shadow: 0 0 5px var(--neon-red), 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+                opacity: 1;
+            }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background-color: #0d0d0d;
+            border: 2px solid var(--neon-pink);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 0 10px var(--neon-pink);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--neon-pink), 0 0 25px var(--neon-pink);
+        }
+
+        .project-card h3 {
+            color: var(--neon-pink);
+            text-shadow: 0 0 2px var(--neon-pink);
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: 13px;
+            color: #ccc;
+            text-shadow: none;
+        }
+
+        .project-card a {
+            color: var(--turquoise);
+            text-decoration: none;
+            text-shadow: 0 0 1px var(--turquoise);
+            font-weight: bold;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header section -->
+    <header>
+        <h1>MP</h1>
+        <nav>
+            <a href="#Introduction">Introduction</a>
+            <a href="#Aboutme">About Me</a>
+            <a href="#Projects">Projects</a>
+        </nav>
+    </header>
+
+    <div id="dev-warning">
+        🚧 Site still in development! 🚧
+    </div>
+
+    <!-- Main sections -->
+    <section id="Introduction">
+        <div class="neon-box">
+            <h2>Introduction</h2>
+            <p>Hi, I'm Mert, a first-year Web Design and Coding student. I enjoy creating websites and fooling around the web for ideas. I'm also developing/training a voice commanded multi-functional artificial intelligence application.</p>
+        </div>
+    </section>
+
+    <section id="Aboutme">
+        <div class="neon-box">
+            <h2>About Me</h2>
+            <p>Placeholder</p>
+        </div>
+    </section>
+
+    <section id="Projects">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <!-- AI Project Card -->
+            <div class="project-card">
+                <h3>AI Project</h3>
+                <p>Developing a voice-commanded, multi-functional artificial intelligence application.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <!-- Mental Health Project Card -->
+            <div class="project-card">
+                <h3>Mental Health Database</h3>
+                <p>A project to create a comprehensive database for mental health resources.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <!-- Real Estate Project Card -->
+            <div class="project-card">
+                <h3>Real Estate Project</h3>
+                <p>A web application focused on visualizing real estate data in new ways.</p>
+                <a href="#">Learn More</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
