@@ -66,7 +66,26 @@ setInterval(fetchLastFM, 30000);
     const modal = document.getElementById('patchNotesModal');
     modal.style.display = 'none';
 }
+const imlec = document.querySelector('.ozel-imlec');
+const tiklanabilirler = document.querySelectorAll('a, button, .kart');
 
+// Fare hareketi (Burası aynı kalsın)
+document.addEventListener('mousemove', (e) => {
+    imlec.style.left = e.clientX + 'px';
+    imlec.style.top = e.clientY + 'px';
+});
+
+// Hover efektleri (Buradaki 'const imlec' satırını sildik)
+tiklanabilirler.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        imlec.style.transform = 'translate(-50%, -50%) scale(2)';
+        imlec.style.backgroundColor = '#FFD700'; 
+    });
+    el.addEventListener('mouseleave', () => {
+        imlec.style.transform = 'translate(-50%, -50%) scale(1)';
+        imlec.style.backgroundColor = '#A3FF00';
+    });
+});
 // İleride "Sadece bir kez göster" yapmayı planladığım zaman için >:3c :
 // if (localStorage.getItem('modalSeen')) { closeModal(); }
 // function closeModal() { ... localStorage.setItem('modalSeen', 'true'); }
