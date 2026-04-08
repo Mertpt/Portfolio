@@ -9,6 +9,7 @@ async function fetchLastFM() {
         const response = await fetch(url);
         const data = await response.json();
         const track = data.recenttracks.track[0];
+        data?.recenttracks?.track?.[0]?.name || "Dinleniyor...";
         
         // HTML elementlerini yakala
         const trackNameEl = document.getElementById('track-name');
@@ -89,3 +90,38 @@ tiklanabilirler.forEach(el => {
 // İleride "Sadece bir kez göster" yapmayı planladığım zaman için >:3c :
 // if (localStorage.getItem('modalSeen')) { closeModal(); }
 // function closeModal() { ... localStorage.setItem('modalSeen', 'true'); }
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let scrambleInterval = null;
+
+const scrambleText = (event) => {
+  let iteration = 0;
+  // HTML'deki data-value'yu al, yoksa mevcut text'i kullan
+  const target = event.target;
+  const originalText = target.dataset.value || target.innerText; 
+  
+  clearInterval(scrambleInterval);
+  
+  scrambleInterval = setInterval(() => {
+    target.innerText = target.innerText
+      .split("")
+      .map((letter, index) => {
+        if(index < iteration) {
+          return originalText[index];
+        }
+        return letters[Math.floor(Math.random() * 26)];
+      })
+      .join("");
+    
+    // Eğer tüm harfler düzelmişse veya metin uzunluğunu geçmişse durdur
+    if(iteration >= originalText.length){ 
+      target.innerText = originalText; // En son metni garantiye al (MERTQ olmasın)
+      clearInterval(scrambleInterval);
+    }
+    
+    iteration += 1 / 3;
+  }, 30);
+}
+
+// Hover event'ini bağla
+document.querySelector("h1").onmouseenter = scrambleText;
