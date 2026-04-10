@@ -67,36 +67,20 @@ setInterval(fetchLastFM, 30000);
     const modal = document.getElementById('patchNotesModal');
     modal.style.display = 'none';
 }
-const imlec = document.querySelector('.ozel-imlec');
-const tiklanabilirler = document.querySelectorAll('a, button, .kart');
-
-// Fare hareketi (Burası aynı kalsın)
-document.addEventListener('mousemove', (e) => {
-    imlec.style.left = e.clientX + 'px';
-    imlec.style.top = e.clientY + 'px';
-});
-
-// Hover efektleri (Buradaki 'const imlec' satırını sildik)
-tiklanabilirler.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        imlec.style.transform = 'translate(-50%, -50%) scale(2)';
-        imlec.style.backgroundColor = '#FFD700'; 
-    });
-    el.addEventListener('mouseleave', () => {
-        imlec.style.transform = 'translate(-50%, -50%) scale(1)';
-        imlec.style.backgroundColor = '#A3FF00';
-    });
-});
 // İleride "Sadece bir kez göster" yapmayı planladığım zaman için >:3c :
 // if (localStorage.getItem('modalSeen')) { closeModal(); }
 // function closeModal() { ... localStorage.setItem('modalSeen', 'true'); }
 
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let scrambleInterval = null;
+let isAnimating = false; // Animasyonun çalışıp çalışmadığını takip eder
 
 const scrambleText = (event) => {
+  // Eğer animasyon zaten çalışıyorsa, fonksiyonu durdur ve baştan başlatma
+  if (isAnimating) return; 
+  
+  isAnimating = true;
   let iteration = 0;
-  // HTML'deki data-value'yu al, yoksa mevcut text'i kullan
   const target = event.target;
   const originalText = target.dataset.value || target.innerText; 
   
@@ -113,15 +97,78 @@ const scrambleText = (event) => {
       })
       .join("");
     
-    // Eğer tüm harfler düzelmişse veya metin uzunluğunu geçmişse durdur
     if(iteration >= originalText.length){ 
-      target.innerText = originalText; // En son metni garantiye al (MERTQ olmasın)
+      target.innerText = originalText; 
       clearInterval(scrambleInterval);
+      isAnimating = false; // Animasyon bittiğinde kilidi aç
     }
     
     iteration += 1 / 3;
   }, 30);
 }
 
-// Hover event'ini bağla
+// hover event'i
 document.querySelector("h1").onmouseenter = scrambleText;
+
+//MAtch the Cards project's JavaScript
+const icons = ['💀', '🔐', '💻', '🧪', '📟', '🔌', '🕹️', '📡'];
+let cards = [...icons, ...icons];
+let flippedCards = [];
+let moves = 0;
+
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+function createBoard() {
+    const grid = document.getElementById('game-grid');
+    grid.innerHTML = '';
+    shuffle(cards).forEach((icon, index) => {
+        const card = document.createElement('div');
+        card.classList.add('memory-card');
+        card.dataset.icon = icon;
+        card.dataset.index = index;
+        card.onclick = () => flipCard(card);
+        grid.appendChild(card);
+    });
+}
+
+function flipCard(card) {
+    if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+        card.innerText = card.dataset.icon;
+        card.classList.add('flipped');
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+            moves++;
+            document.getElementById('moves').innerText = moves;
+            checkMatch();
+        }
+    }
+}
+
+function checkMatch() {
+    const [card1, card2] = flippedCards;
+    if (card1.dataset.icon === card2.dataset.icon) {
+        flippedCards = [];
+    } else {
+        setTimeout(() => {
+            card1.innerText = '';
+            card2.innerText = '';
+            card1.classList.remove('flipped');
+            card2.classList.remove('flipped');
+            flippedCards = [];
+        }, 1000);
+    }
+}
+
+// Yenile butonunun çalışması için:
+function resetGame() {
+    moves = 0;
+    document.getElementById('moves').innerText = moves;
+    flippedCards = [];
+    createBoard(); // Tahtayı yeniden dağıt
+}
+
+// SAYFA YÜKLENDİĞİNDE OYUNU BAŞLATAN O SİHİRLİ SATIR:
+createBoard();

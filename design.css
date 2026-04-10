@@ -403,26 +403,72 @@
     margin-bottom: 10px;
     display: inline-block;
 }
-  body { cursor: none; } /* Varsayılan imleci gizler */
-  .ozel-imlec {
-    z-index: 9999; /* Her şeyin en üstünde olmalı */
-    pointer-events: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none; /* Tıklamaların alt katmana geçmesini sağlar */
-    transform: translate(-50%, -50%); /* Tam merkeze hizalar */
-    border: 3px solid black;
-    background-color: #A3FF00; /* Neon Yeşil */
-    box-shadow: 4px 4px 0px black;
-  }
 
-  * {
-  cursor: none !important;
+/* Ana Konteynır - Mevcut Bento kutusunun içine tam oturması için */
+.memory-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
 }
 
-/* Linkler ve butonlar üzerinde de gizli kalsın */
-a, button, input, select, textarea {
-  cursor: none !important;
+/* Durum Çubuğu ve Yenile Butonu */
+.memory-status {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+.memory-status button {
+    background: #fff;
+    border: 3px solid #000;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000; /* Senin imza gölgen */
+    transition: all 0.1s;
+}
+
+.memory-status button:active {
+    box-shadow: 0px 0px 0px #000;
+    transform: translate(4px, 4px);
+}
+
+/* Oyun Izgarası */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4x4 Izgara */
+    gap: 10px;
+    perspective: 1000px;
+}
+
+/* Kartların Tasarımı */
+.memory-card {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border: 3px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Kartın Üzerine Gelince */
+.memory-card:hover {
+    background: #f0f0f0;
+}
+
+/* Kart Çevrildiğinde (JS ile eklenecek class) */
+.memory-card.flipped {
+    background: #c3ff00; /* Senin o meşhur yeşilin veya gold rengin */
+    box-shadow: 0px 0px 0px #000;
+    transform: translate(2px, 2px);
+    cursor: default;
 }

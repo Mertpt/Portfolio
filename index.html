@@ -7,7 +7,6 @@
    <link rel="stylesheet" href="design.css">
 </head>
 <body>
-<div class="ozel-imlec"></div>
 
     <div id="patchNotesModal" class="modal-overlay">
     <div class="modal-content">
@@ -35,8 +34,6 @@
                 <li>Galeri Sekmesi</li>
                 <li>Proje Kartları ve Bana Ulaş butonlarının uygun içerik ile donatılması</li>
                 <li>Mikro Etkileşimler</li>
-                <li>Fizik Motorlu "Yetenekler" Kutusu</li>
-                <li>Terminal Tabanlı Ziyaretçi Defteri</li>
 
             </ul>
 
@@ -50,7 +47,7 @@
     </button>
 
     <div class="container">
-        <h2>HEY! BEN <span class="--accent-gold"><h1  display: inline-block; data-value="MERT">>MERT</h1></span></h2>
+        <h1>HEY! BEN <span class="--accent-gold">>MERT</span></h1>
 
         <div class="preview-section">
             <h2 style="font-size: 2rem; margin-bottom: 15px;">Hızlı bir Tanıtım <span class="gold-accent">:3</span></h2>
@@ -116,13 +113,17 @@
                 <h3 style="margin-bottom: 10px;">🍜 Recipe App</h3>
                 <p style="font-size: 0.9rem; margin-bottom: 20px;">HTML/CSS dünyasına giriş yaptığın, bol "lezzetli" ilk göz ağrın.</p>
                 <button class="btn btn-accent" style="padding: 8px 15px; font-size: 0.8rem;">Detaylar</button>
-            </div>
-        </div>
-    </div>
-    <script src="../Portfolio/script.js"></script>
-</body>
 
             </div>
+           <div class="project-card"> <h3 style="margin-bottom: 10px;">🧠 Hafıza Oyunu</h3>
+    <div class="memory-game-container">
+        <div class="memory-status">
+            <span>Hamle: <span id="moves">0</span></span>
+            <button onclick="resetGame()">Yenile</button>
+        </div>
+        <div id="game-grid" class="game-grid"></div>
+    </div>
+</div>
         </div>
     </div>
     <script src="../Portfolio/script.js"></script>
