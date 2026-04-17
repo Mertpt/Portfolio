@@ -172,3 +172,18 @@ function resetGame() {
 
 // SAYFA YÜKLENDİĞİNDE OYUNU BAŞLATAN O SİHİRLİ SATIR:
 createBoard();
+//==============================================
+// Seçicileri eşitleyelim
+const contactBtn = document.querySelector('.btn.btn-primary'); 
+const modal = document.querySelector('#contact-modal');
+const closeBtn = document.querySelector('.close-button'); // HTML'deki class
+
+// Modalı Aç
+contactBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+});
+
+// Kapat
+closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+});
