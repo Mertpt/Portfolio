@@ -277,6 +277,7 @@
 }
 /* Siyah kutu için */
 .bento-card.bg-dark{
+    align-self: start; /* İçeriği kadar yer kaplar, satır boyuna zorlanmaz */
     background: #000000;
     color: #ffffff;
     border-color: #000000;
